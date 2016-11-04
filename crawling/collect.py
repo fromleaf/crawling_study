@@ -2,6 +2,8 @@
 
 import requests
 import feedparser
+import chardet
+import urllib
 
 from robobrowser import RoboBrowser
 
@@ -65,3 +67,14 @@ def get_news_by_feedparser(url):
     d = feedparser.parse(url)
     print(d)
     print(d['feed'])
+
+
+def what_is_encoding_by_chardet(url):
+    rawdata = urllib.request.urlopen(url).read()
+
+    result = chardet.detect(rawdata)
+
+    print(result)
+
+    return result
+
